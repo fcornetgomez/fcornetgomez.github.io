@@ -2,11 +2,11 @@
 
 
 # Display name
-title: Simon Gravelle
+title: Fernando Cornet-Gomez
 
 # Full name (for SEO)
-first_name: Simon
-last_name: Gravelle
+first_name: Fernando
+last_name: Cornet-Gomez
 
 # Status emoji
 status:
@@ -16,28 +16,28 @@ status:
 superuser: true
 
 # Role/position/tagline
-role: CNRS research scientist, MSCA Fellow
+role: CWRU Presidential Society of STEM Postdoctoral Fellow
 
 # Organizations/Affiliations to show in About widget
 organizations:
-  - name: LiPhy, UGA, CNRS
-    url: https://liphy.univ-grenoble-alpes.fr/
+  - name: CERCA, Physics Department, Case Western Reserve University
+    url: https://physics.case.edu/
 
 # Short bio (displayed in user profile at end of posts)
-bio: I am a computer physicist in soft matter and fluids at interfaces at LIPhy (UGA/CNRS) in Grenoble, France.
+bio: I am a pheno particle physicist with recent interest ins Cosmology and Machine Learning. I am currently based on Cleveland, Ohio, USA.
 
 # Interests to show in About widget
 interests:
-  - Soft Matter
-  - Fluid at interface
-  - Computer simulations
+  - Particle Physics
+  - Cosmology
+  - Machine Learning
 
 # Education to show in About widget
 education:
   courses:
-    - course: PhD in Nanofluidics
-      institution: University of Lyon (France)
-      year: 2015
+    - course: PhD in Particle Physics
+      institution: Universidad de Valencia (Spain)
+      year: 2021
 
 # Social/Academic Networking
 # For available icons, see: https://wowchemy.com/docs/getting-started/page-builder/#icons
@@ -47,21 +47,21 @@ education:
 social:
   - icon: envelope
     icon_pack: fas
-    link: mailto:simon.gravelle@live.fr
+    link: mailto:fxc234@case.edu
     # link: '/#contact'
   - icon: twitter
     icon_pack: fab
-    link: https://twitter.com/GravelleSimon
+    link: https://twitter.com/CornetF
     label: Follow me on Twitter
   #- icon: mastodon
   #  icon_pack: fab
-  #  link: https://mastodon.social/@simongravelle
+  #  link: https://mastodon.social/
   - icon: graduation-cap
     icon_pack: fas
-    link: https://scholar.google.com/citations?user=9fD2JlYAAAAJ&hl=fr
+    link: https://scholar.google.com/citations?user=BmQ-1J4AAAAJ&hl=es
   - icon: github
     icon_pack: fab
-    link: https://github.com/simongravelle
+    link: https://github.com/fcornetgomez
     display:
       header: true
   - icon: cv
