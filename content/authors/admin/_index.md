@@ -100,13 +100,12 @@ social:
   - icon: graduation-cap
     icon_pack: fas
     link: https://scholar.google.com/citations?user=BmQ-1J4AAAAJ&hl=es
-  - icon: github
-    icon_pack: fab
-    link: https://github.com/fcornetgomez
-    display:
-      header: true
+  #- icon: github
+  #  icon_pack: fab
+  #  link: https://github.com/fcornetgomez
+  #  display:
+  #    header: true
   - icon: inspire
-    icon_pack: custom
     link: https://inspirehep.net/authors/1517356?ui-citation-summary=true
   - icon: cv
     icon_pack: ai
