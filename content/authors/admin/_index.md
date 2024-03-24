@@ -108,7 +108,7 @@ social:
     link: https://github.com/fcornetgomez
     display:
       header: true
-    icon: inspire
+  - icon: inspire
     icon_pack: custom
     link: https://inspirehep.net/authors/1517356?ui-citation-summary=true
   - icon: cv
