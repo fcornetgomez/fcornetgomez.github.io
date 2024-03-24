@@ -37,12 +37,10 @@ education:
     - course: PhD in Particle Physics
       institution: Universidad de Valencia (Spain)
       year: 2021
-
-      - course: MsC in Particle Physics
+    - course: MsC in Particle Physics
       institution: Universidad de Granada (Spain)
       year: 2016
-
-      - course: BsC in Physics
+    - course: BsC in Physics
       institution: Universidad de Granada (Spain)
       year: 2015
 
@@ -132,10 +130,3 @@ I am a pheno particle physicist with recent interest ins Cosmology and Machine L
 
 Currently, I am the primary intructor of the PHYS122 Course: General Physics II: Electricity and Electromagnetism at Case Western Reserve University. I have received the "Think[box]" Faculty Fellowship Grant (7000$) as co-PI as well as other smaller grants. I have attendend several programs for teaching advancement as "Learning Fellows", " " and " ".
 {style="text-align: justify;"}
-
-
-
-
-
-
-
