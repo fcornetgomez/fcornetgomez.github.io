@@ -106,6 +106,7 @@ social:
   #  display:
   #    header: true
   - icon: inspire
+    icon_pack: custom
     link: https://inspirehep.net/authors/1517356?ui-citation-summary=true
   - icon: cv
     icon_pack: ai
@@ -113,9 +114,6 @@ social:
   # Link to a PDF of your resume/CV.
   # To use: copy your resume to `static/uploads/resume.pdf`, enable `ai` icons in `params.yaml`,
   # and uncomment the lines below.
-  - icon: cv
-    icon_pack: ai
-    link: uploads/resume.pdf
 
 # Highlight the author in author lists? (true/false)
 highlight_name: true
