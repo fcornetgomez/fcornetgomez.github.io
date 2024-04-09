@@ -1,9 +1,9 @@
 ---
-title: "Flavor conservation in two-Higgs-doublet models"
+title: "Cosmic topology. Part IVa. Classification of manifolds using machine learning: a case study with small toroidal universes"
 authors:
-- "Botella, Francisco J. and Cornet-Gomez, Fernando and Nebot, Miguel"
-date: "2018"
-doi: "10.1103/PhysRevD.98.035046"
+- "Compact Collaboration: Andrius Tamosiunas, Fernando Cornet-Gomez, Yashar Akrami, Stefano Anselmi, Javier Carrón Duque, Craig J. Copi, Johannes R. Eskilt, Özenç Güngör, Andrew H. Jaffe, Arthur Kosowsky, Mikel Martin Barandiaran, James B. Mertens, Deyan P. Mihaylov, Thiago S. Pereira, Samanta Saha, Amirhossein Samandar, Glenn D. Starkman, Quinn Taylor, Valeri Vardanyan"
+date: "2024"
+doi: "10.48550/arXiv.2404.01236"
 
 # Schedule page publish date (NOT publication's date).
 #publishDate: ""
@@ -14,10 +14,10 @@ doi: "10.1103/PhysRevD.98.035046"
 publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
-publication: "Phys.Rev.D 98 (2018) 3, 035046"
-publication_short: "Phys.Rev.D 98 (2018) 3, 035046"
+publication: "	arXiv:2404.01236"
+publication_short: "	arXiv:2404.01236"
 
-abstract: In extensions of the Standard Model with two Higgs doublets, flavor-changing Yukawa couplings of the neutral scalars may be present at tree level. In this work, we consider the most general scenario in which those flavor-changing couplings are absent. We revise the conditions that the Yukawa coupling matrices must obey for such general flavour conservation (gFC) and study the one-loop renormalization group evolution of such conditions in both the quark and lepton sectors. We show that gFC in the leptonic sector is one-loop stable under the renormalization group evolution, and in the quark sector, we present some new Cabibbo-like solution also one-loop stable under renormalization group evolution. At a phenomenological level, we obtain the regions for the different gFC parameters that are allowed by the existing experimental constraints related to the 125 GeV Higgs.
+abstract: Non-trivial spatial topology of the Universe may give rise to potentially measurable signatures in the cosmic microwave background. We explore different machine learning approaches to classify harmonic-space realizations of the microwave background in the test case of Euclidean E1 topology (the 3-torus) with a cubic fundamental domain of a size scale significantly smaller than the diameter of the last scattering surface. Different machine learning approaches are capable of classifying the harmonic-space realizations with accuracy greater than 99% if the topology scale is half of the diameter of the last-scattering surface and orientation of the topology is known. For distinguishing random rotations of these sky realizations from realizations of the covering space, the extreme gradient boosting classifier algorithm performs best with an accuracy of 88%. Slightly lower accuracies of 83% to 87% are obtained with the random forest classifier along with one- and two-dimensional convolutional neural networks. The techniques presented here can also accurately classify non-rotated cubic E1 topology realizations with a topology scale slightly larger than the diameter of the last-scattering surface, if provided enough training data. This work identifies the prospects and the main challenges for developing machine learning techniques that are capable of accurately classifying observationally viable topologies.
 
 # Summary. An optional shortened abstract.
 #summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum.
@@ -29,7 +29,7 @@ featured: false
 # links:
 # - name: ""
 #   url: ""
-url_pdf: https://inspirehep.net/files/c14de12d2daad6c58b19c6ed6a8c1605
+url_pdf: https://arxiv.org/pdf/2404.01236
 #url_code: 'https://github.com/HugoBlox/hugo-blox-builder'
 #url_dataset: ''
 #url_poster: ''
