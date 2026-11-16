@@ -56,9 +56,8 @@ APARTADOS = [
 # Se comprueban en orden; el primero que encaja gana.
 TEMAS = [
     ("topologia", "Topología cósmica", r"topolog|kullback|compact|cosmic"),
-    ("g-2", "g−2", r"g\s*[-−–]\s*2"),
     ("colisionadores", "Colisionadores", r"collider|top[- ]quark|factory|top sector"),
-    ("sabor", "Sabor y 2HDM", r"higgs doublet|2hdm|flavou?r|fcnc|ckm|cp"),
+    ("sabor", "2HDM: sabor y g−2", r"higgs doublet|2hdm|flavou?r|fcnc|ckm|cp|g\s*[-−–]\s*2"),
 ]
 
 
@@ -308,13 +307,16 @@ def comprobar(sitio, lineas, colaboraciones, trayectoria):
         if c.get("logo") and not (RAIZ / "estatico/img/colaboraciones" / c["logo"]).exists():
             error("colaboraciones.yml", f"{c['nombre']}: no encuentro el logo "
                   f"estatico/img/colaboraciones/{c['logo']}")
-    for bloque, entradas in (trayectoria or {}).items():
-        for e in entradas or []:
-            if not e.get("periodo"):
-                error("trayectoria.yml", f"en '{bloque}' hay una entrada sin 'periodo:'.")
-            e["periodo"] = str(e["periodo"])
-            for campo in ("web", "detalle", "puesto", "titulo", "lugar"):
-                e.setdefault(campo, None)
+    if not isinstance(trayectoria, list):
+        error("trayectoria.yml", "debe ser una lista de etapas, cada una empezando por '- periodo:'.")
+    for e in trayectoria:
+        for x in [e] + (e.get("estancias") or []):
+            if not x.get("periodo") or not x.get("titulo"):
+                error("trayectoria.yml", "cada etapa y estancia necesita 'periodo:' y 'titulo:'.")
+            x["periodo"] = str(x["periodo"])
+            for campo in ("web", "detalle", "lugar"):
+                x.setdefault(campo, None)
+        e["estancias"] = e.get("estancias") or []
     for c in colaboraciones:
         c.setdefault("logo", None)
     for l in lineas:
@@ -332,10 +334,10 @@ def traducir_contenido(d, tr):
         for campo in ("titulo", "resumen", "texto"):
             l[campo] = tr(l.get(campo))
         l["temas"] = [tr(x) for x in l.get("temas") or []]
-    for entradas in d["trayectoria"].values():
-        for e in entradas or []:
-            for campo in ("puesto", "titulo", "lugar", "detalle"):
-                e[campo] = tr(e.get(campo))
+    for e in d["trayectoria"]:
+        for x in [e] + e["estancias"]:
+            for campo in ("titulo", "lugar", "detalle"):
+                x[campo] = tr(x.get(campo))
     for n in d["noticias"]:
         n["titulo"], n["cuerpo"] = tr(n["titulo"]), tr(n["cuerpo"])
     return d
@@ -385,7 +387,7 @@ def main():
     sitio = leer_yaml("sitio.yml") or {}
     lineas = leer_yaml("investigacion.yml") or []
     colaboraciones = leer_yaml("colaboraciones.yml") or []
-    trayectoria = leer_yaml("trayectoria.yml") or {}
+    trayectoria = leer_yaml("trayectoria.yml") or []
     opciones = leer_yaml("publicaciones.yml") or {}
     comprobar(sitio, lineas, colaboraciones, trayectoria)
 

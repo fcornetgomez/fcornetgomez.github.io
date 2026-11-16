@@ -1,30 +1,29 @@
 {% extends "base.html" %}
 {% block titulo %}{{ t("Trayectoria") }} · {% endblock %}
-{% macro linea_tiempo(entradas) %}
-<ol class="propagador">
-  {% for e in entradas %}
-  <li class="propagador__vertice{% if e.periodo.endswith('–') %} propagador__vertice--actual{% endif %}">
-    <span class="propagador__periodo">{{ e.periodo }}{% if e.periodo.endswith('–') %}{{ t("actualidad") }}{% endif %}</span>
-    <div>
-      <h3>{% if e.web %}<a href="{{ e.web }}">{{ e.puesto or e.titulo }}</a>{% else %}{{ e.puesto or e.titulo }}{% endif %}</h3>
-      <p class="tenue">{{ e.lugar }}</p>
-      {% if e.detalle %}<div class="propagador__detalle">{{ e.detalle | md }}</div>{% endif %}
-    </div>
-  </li>
-  {% endfor %}
-</ol>
+{% macro etapa(e, clase="") %}
+<span class="propagador__periodo">{{ e.periodo }}{% if e.periodo.endswith('–') %}{{ t("actualidad") }}{% endif %}</span>
+<div>
+  <h3>{% if e.web %}<a href="{{ e.web }}">{{ e.titulo }}</a>{% else %}{{ e.titulo }}{% endif %}</h3>
+  {% if e.lugar %}<p class="tenue">{{ e.lugar }}</p>{% endif %}
+  {% if e.detalle %}<div class="propagador__detalle">{{ e.detalle | md }}</div>{% endif %}
+</div>
 {% endmacro %}
 {% block contenido %}
 <header class="titular"><div class="contenedor"><h1>{{ t("Trayectoria") }}</h1>
-<p>{{ t("Puestos, formación y docencia.") }}</p></div></header>
+<p>{{ t("Puestos y formación.") }}</p></div></header>
 <div class="contenedor seccion estrecho">
-  {% for clave, titulo in [("puestos", "Puestos"), ("formacion", "Formación"), ("docencia", "Docencia")] %}
-  {% if trayectoria[clave] is defined and trayectoria[clave] %}
-  <section>
-    <h2>{{ t(titulo) }}</h2>
-    {{ linea_tiempo(trayectoria[clave]) }}
-  </section>
-  {% endif %}
-  {% endfor %}
+  <ol class="propagador">
+    {% for e in trayectoria %}
+    <li class="propagador__vertice{% if e.periodo.endswith('–') %} propagador__vertice--actual{% endif %}">
+      {{ etapa(e) }}
+      {% if e.estancias %}
+      {# Las estancias salen de la línea principal como un escalar emitido (línea discontinua) #}
+      <ol class="estancias">
+        {% for s in e.estancias %}<li class="estancia">{{ etapa(s) }}</li>{% endfor %}
+      </ol>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
 </div>
 {% endblock %}

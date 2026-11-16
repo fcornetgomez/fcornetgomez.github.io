@@ -269,7 +269,7 @@ time { color: var(--tenue); font-size: .88rem; }
 .citas::before { content: "↗ "; }
 
 /* ---------- Trayectoria: una línea de fermión con un vértice por etapa ---------- */
-.propagador { list-style: none; margin: 0; padding: 0 0 0 1.75rem; position: relative; }
+.propagador { list-style: none; margin: 2.5rem 0 0; padding: 0 0 0 1.75rem; position: relative; }
 .propagador::before { content: ""; position: absolute; left: .45rem; top: .6rem; bottom: .6rem; width: 2px; background: var(--texto); opacity: .75; }
 .propagador__vertice { position: relative; padding: 0 0 1.75rem; display: grid; gap: .1rem 1.5rem; }
 @media (min-width: 40rem) { .propagador__vertice { grid-template-columns: 8rem 1fr; } }
@@ -301,3 +301,14 @@ address { font-style: normal; }
   * { transition: none !important; scroll-behavior: auto !important; }
   .traza, .dep, .portada__paquetes { animation: none !important; stroke-dashoffset: 0; opacity: 1; }
 }
+
+/* Estancias: más pequeñas y sangradas, unidas a la línea principal por un trazo
+   discontinuo, como un escalar emitido desde el propagador */
+.estancias { list-style: none; margin: .9rem 0 0; padding: 0; grid-column: 1 / -1; }
+.estancia { position: relative; display: grid; gap: .1rem 1.25rem; margin-left: 2.5rem; padding: .55rem .9rem; font-size: .9rem;
+  border-left: 2px dashed var(--acento); background: color-mix(in srgb, var(--acento) 6%, transparent); border-radius: 0 var(--radio) var(--radio) 0; }
+@media (min-width: 40rem) { .estancia { grid-template-columns: 5.5rem 1fr; margin-left: 4rem; } }
+.estancia::before { content: ""; position: absolute; top: 1.05rem; right: 100%; width: calc(2.5rem + 1.75rem - .55rem); border-top: 2px dashed var(--acento); }
+@media (min-width: 40rem) { .estancia::before { width: calc(4rem + 1.75rem - .55rem); } }
+.estancia h3 { font-size: 1rem; }
+.estancia .propagador__periodo { font-size: .82rem; }

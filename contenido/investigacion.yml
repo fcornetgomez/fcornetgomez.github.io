@@ -19,29 +19,15 @@
     experimentos. Estudio simetrías y estructuras de sabor que las mantienen bajo
     control —o las eliminan por completo— de forma estable bajo la evolución del
     grupo de renormalización, y cómo las nuevas fases de violación de CP podrían
-    tener un origen común en los sectores de quarks y leptones.
+    tener un origen común en los sectores de quarks y leptones. Estos modelos
+    también pueden explicar a la vez las anomalías de los momentos magnéticos
+    del muon y del electrón (g−2).
   temas:
     - Modelos BGL generalizados con FCNC controladas
     - Conservación general del sabor (gFC) y su estabilidad bajo el grupo de renormalización
     - Modelos con simetrías de sabor y su fenomenología en el LHC
     - Origen común de las fases de CP de las matrices CKM y PMNS
-
-- titulo: Momentos magnéticos anómalos de los leptones (g−2)
-  diagrama: g-2
-  resumen: |
-    Las anomalías del muon y del electrón como ventana a nueva física en el
-    sector escalar.
-  texto: |
-    El momento magnético anómalo del muon, y el del electrón, se miden y se calculan
-    con una precisión extraordinaria, lo que los convierte en sondas muy sensibles de
-    partículas nuevas en los bucles. He estudiado cómo modelos con dos dobletes de
-    Higgs que conservan el sabor pueden explicar a la vez las discrepancias del muon
-    y del electrón, compatibles con los límites del LHC, de los observables
-    electrodébiles y de las interacciones escalares del leptón τ.
-  temas:
-    - Contribuciones a uno y dos bucles (diagramas de Barr–Zee) en 2HDM
-    - Explicación conjunta de (g−2)<sub>μ</sub> y (g−2)<sub>e</sub>
-    - Interacciones escalares del τ y correlaciones con otros observables
+    - Momentos magnéticos anómalos de los leptones, (g−2)<sub>μ</sub> y (g−2)<sub>e</sub>
 
 - titulo: Física en futuros colisionadores
   diagrama: colisionador

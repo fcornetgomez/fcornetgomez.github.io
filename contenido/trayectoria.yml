@@ -1,50 +1,40 @@
-# Trayectoria (CV breve). Cada bloque es una lista; el más reciente, arriba.
-#   periodo:  años, p. ej. "2016–2021" o "2024–" (puesto actual)
-#   puesto / titulo, lugar, detalle (opcional, admite Markdown), web (opcional)
+# Trayectoria: puestos y formación en una sola línea de tiempo (lo más reciente, arriba).
+#   periodo:  años, p. ej. "2016–2021" o "2024–" (etapa actual)
+#   titulo, lugar, detalle (opcional, admite Markdown), web (opcional)
+#   estancias: opcional; estancias de investigación durante esa etapa. Se dibujan
+#              más pequeñas, saliendo de la línea principal.
 # Fuente inicial: perfil de INSPIRE-HEP y web anterior (noviembre de 2026).
 
-puestos:
-  - periodo: "2024–"
-    puesto: Profesor Distinguido
-    lugar: Departamento de Física, Universidad de Córdoba (España)
-    web: https://www.uco.es/organiza/departamentos/fisica/
-    detalle: Miembro del grupo FQM-429 «Astrofísica, Cosmología y Partículas».
+- periodo: "2024–"
+  titulo: Profesor Distinguido
+  lugar: Departamento de Física, Universidad de Córdoba (España)
+  web: https://www.uco.es/organiza/departamentos/fisica/
+  detalle: Miembro del grupo FQM-429 «Astrofísica, Cosmología y Partículas».
 
-  - periodo: "2022–2025"
-    puesto: Investigador posdoctoral (Presidential Society of STEM Postdoctoral Fellow)
-    lugar: CERCA, Departamento de Física, Case Western Reserve University (Cleveland, EE. UU.)
-    web: https://case.edu/provost/presidential-fellows
-    detalle: Beca posdoctoral Presidential Society of STEM concedida en 2022.
+- periodo: "2022–2025"
+  titulo: Investigador posdoctoral (Presidential Society of STEM Postdoctoral Fellow)
+  lugar: CERCA, Departamento de Física, Case Western Reserve University (Cleveland, EE. UU.)
+  web: https://case.edu/provost/presidential-fellows
 
-  - periodo: "2021–2022"
-    puesto: Investigador posdoctoral
-    lugar: Instituto de Física Corpuscular (IFIC), Universitat de València–CSIC (España)
+- periodo: "2021–2022"
+  titulo: Investigador posdoctoral
+  lugar: Instituto de Física Corpuscular (IFIC), Universitat de València–CSIC (España)
 
-  - periodo: "2020"
-    puesto: Investigador visitante
-    lugar: CFTP, Instituto Superior Técnico, Lisboa (Portugal)
+- periodo: "2016–2021"
+  titulo: Doctorado en Física
+  lugar: IFIC, Universitat de València (España)
+  detalle: |
+    Tesis: *Taming Flavor in Two Higgs Doublet Models*. Directores:
+    Francisco J. Botella y Miguel Nebot.
+  estancias:
+    - periodo: "2020"
+      titulo: Estancia de investigación
+      lugar: CFTP, Instituto Superior Técnico, Lisboa (Portugal)
 
-formacion:
-  - periodo: "2016–2021"
-    titulo: Doctorado en Física
-    lugar: IFIC, Universitat de València (España)
-    detalle: |
-      Tesis: *Taming Flavor in Two Higgs Doublet Models*. Directores:
-      Francisco J. Botella y Miguel Nebot.
+- periodo: "2015–2016"
+  titulo: Máster en Física de Partículas
+  lugar: Universidad de Granada (España)
 
-  - periodo: "2015–2016"
-    titulo: Máster en Física de Partículas
-    lugar: Universidad de Granada (España)
-
-  - periodo: "2011–2015"
-    titulo: Grado en Física
-    lugar: Universidad de Granada (España)
-
-docencia:
-  - periodo: "2022–2025"
-    titulo: "PHYS 122: General Physics II — Electricity and Magnetism (profesor responsable)"
-    lugar: Case Western Reserve University
-    detalle: |
-      Co-investigador principal de una ayuda *Think[box] Faculty Fellowship* para
-      innovación docente, además de otras ayudas menores y programas de formación
-      del profesorado (*Learning Fellows*).
+- periodo: "2011–2015"
+  titulo: Grado en Física
+  lugar: Universidad de Granada (España)
