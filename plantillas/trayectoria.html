@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}{{ t("Trayectoria") }} · {% endblock %}
+{% macro linea_tiempo(entradas) %}
+<ol class="propagador">
+  {% for e in entradas %}
+  <li class="propagador__vertice{% if e.periodo.endswith('–') %} propagador__vertice--actual{% endif %}">
+    <span class="propagador__periodo">{{ e.periodo }}{% if e.periodo.endswith('–') %}{{ t("actualidad") }}{% endif %}</span>
+    <div>
+      <h3>{% if e.web %}<a href="{{ e.web }}">{{ e.puesto or e.titulo }}</a>{% else %}{{ e.puesto or e.titulo }}{% endif %}</h3>
+      <p class="tenue">{{ e.lugar }}</p>
+      {% if e.detalle %}<div class="propagador__detalle">{{ e.detalle | md }}</div>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ol>
+{% endmacro %}
+{% block contenido %}
+<header class="titular"><div class="contenedor"><h1>{{ t("Trayectoria") }}</h1>
+<p>{{ t("Puestos, formación y docencia.") }}</p></div></header>
+<div class="contenedor seccion estrecho">
+  {% for clave, titulo in [("puestos", "Puestos"), ("formacion", "Formación"), ("docencia", "Docencia")] %}
+  {% if trayectoria[clave] is defined and trayectoria[clave] %}
+  <section>
+    <h2>{{ t(titulo) }}</h2>
+    {{ linea_tiempo(trayectoria[clave]) }}
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
+{% endblock %}

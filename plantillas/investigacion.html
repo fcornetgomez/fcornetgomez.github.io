@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_diagramas.html" import diagrama %}
+{% block titulo %}{{ t("Investigación") }} · {% endblock %}
+{% block contenido %}
+<header class="titular"><div class="contenedor"><h1>{{ t("Investigación") }}</h1>
+<p>{{ t("Fenomenología de partículas: del sector escalar del Modelo Estándar a los futuros colisionadores, y la forma del Universo.") }}</p></div></header>
+<div class="contenedor seccion investigacion">
+  <div>
+  {% for l in lineas %}
+  <section class="linea" id="linea-{{ loop.index }}">
+    {% if l.diagrama %}<figure class="linea__diagrama">{{ diagrama(l.diagrama, l.titulo) }}</figure>{% endif %}
+    <div>
+      <h2>{{ l.titulo }}</h2>
+      {{ (l.texto or l.resumen) | md }}
+      {% if l.temas %}
+      <ul class="linea__lista">{% for x in l.temas %}<li>{{ x | md_linea }}</li>{% endfor %}</ul>
+      {% endif %}
+      <p><a href="publicaciones.html">{{ t("Ver publicaciones") }} →</a></p>
+    </div>
+  </section>
+  {% endfor %}
+  <p class="tenue nota-diagramas">{{ t("Los dibujos son diagramas de Feynman: las líneas continuas con flecha son fermiones (quarks y leptones), las onduladas bosones gauge (γ, Z) y las discontinuas escalares, como el bosón de Higgs.") }}</p>
+  </div>
+  {% if colaboraciones %}
+  <aside class="colaboraciones" aria-labelledby="titulo-colaboraciones">
+    <h2 id="titulo-colaboraciones">{{ t("Colaboraciones") }}</h2>
+    <p class="tenue">{{ t("Colaboraciones y estudios de los que formo parte.") }}</p>
+    <ul>
+      {% for c in colaboraciones %}
+      <li>
+        {% if c.logo %}
+        <a class="colaboracion" href="{{ c.web }}" title="{{ c.nombre }}">
+          <img src="{{ raiz }}{{ recurso('img/colaboraciones/' ~ c.logo) }}" alt="{{ c.nombre }}" loading="lazy">
+        </a>
+        {% else %}
+        <a class="colaboracion colaboracion--texto" href="{{ c.web }}">{{ c.nombre }}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </aside>
+  {% endif %}
+</div>
+{% endblock %}

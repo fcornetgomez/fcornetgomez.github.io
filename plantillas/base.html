@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{ idioma }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block titulo %}{% endblock %}{{ sitio.nombre }} · {{ t("Física de partículas") }}</title>
+<meta name="description" content="{{ t('{nombre}, físico teórico de partículas en la {universidad}: sabor y violación de CP, g−2, futuros colisionadores y topología del Universo.', nombre=sitio.nombre, universidad=sitio.universidad) }}">
+<meta name="author" content="{{ sitio.nombre }}">
+<link rel="alternate" hreflang="{{ 'en' if idioma == 'es' else 'es' }}" href="{{ otro_idioma }}{{ pagina }}">
+<link rel="stylesheet" href="{{ raiz }}{{ recurso('css/estilo.css') }}">
+<link rel="icon" href="{{ raiz }}{{ recurso('img/icono.svg') }}" type="image/svg+xml">
+</head>
+<body>
+<a class="saltar" href="#principal">{{ t("Saltar al contenido") }}</a>
+{# Flechas de las líneas de fermión de los diagramas de Feynman (una sola vez por página) #}
+<svg width="0" height="0" class="oculto" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="7" markerHeight="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1 1.5 L9 5 L1 8.5 z" class="fd-punta"/>
+    </marker>
+  </defs>
+</svg>
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="index.html">
+      <svg class="marca__icono" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M4 34 L20 20 L4 6" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        <path d="{{ onda(20, 20, 38, 20, 2.6, 6) }}" fill="none" class="marca__onda" stroke-width="2.2"/>
+        <circle cx="20" cy="20" r="3" class="marca__vertice"/>
+      </svg>
+      <span>
+        <strong>{{ sitio.nombre }}</strong>
+        <small>{{ t("Física de partículas") }} · {{ sitio.universidad }}</small>
+      </span>
+    </a>
+    <input type="checkbox" id="menu-abierto" class="menu-check" aria-hidden="true">
+    <label for="menu-abierto" class="menu-boton" aria-label="{{ t('Abrir menú') }}">☰</label>
+    <nav class="menu" aria-label="{{ t('Principal') }}">
+      {% set enlaces = [
+        ("index.html", "Inicio"), ("investigacion.html", "Investigación"),
+        ("publicaciones.html", "Publicaciones"), ("trayectoria.html", "Trayectoria"),
+        ("noticias.html", "Noticias"), ("contacto.html", "Contacto")] %}
+      {% for url, texto in enlaces %}
+      <a href="{{ url }}"{% if pagina == url %} aria-current="page"{% endif %}>{{ t(texto) }}</a>
+      {% endfor %}
+      {% if idioma == "es" %}
+      <a class="menu__idioma" href="{{ otro_idioma }}{{ pagina }}" hreflang="en" lang="en">English</a>
+      {% else %}
+      <a class="menu__idioma" href="{{ otro_idioma }}{{ pagina }}" hreflang="es" lang="es">Español</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
+
+<main id="principal">
+{% block contenido %}{% endblock %}
+</main>
+
+{% from "_redes.html" import lista_redes %}
+<footer class="pie">
+  <div class="contenedor pie__fila">
+    <div>
+      <strong>{{ sitio.nombre }}</strong><br>
+      {{ sitio.cargo }} · {{ sitio.departamento }}<br>
+      {{ sitio.universidad }}<br>
+      <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a>
+      {{ lista_redes(redes, "redes--pie") }}
+    </div>
+    <div class="pie__logos">
+      <a href="{{ sitio.grupo_web }}" title="{{ sitio.grupo }}">
+        <img src="{{ raiz }}{{ recurso('img/logo-acp-blanco.svg') }}" alt="{{ sitio.grupo }}" width="120" height="41">
+      </a>
+      <a href="https://www.uco.es">
+        <img src="{{ raiz }}{{ recurso('img/logo-uco-blanco.svg') }}" alt="{{ t('Universidad de Córdoba') }}" width="132" height="66">
+      </a>
+    </div>
+  </div>
+  <p class="contenedor pie__nota">© {{ anio }} {{ sitio.nombre }} · {{ t("Actualizado el {fecha}", fecha=actualizado) }}</p>
+</footer>
+</body>
+</html>

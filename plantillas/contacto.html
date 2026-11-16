@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_redes.html" import icono_red %}
+{% block titulo %}{{ t("Contacto") }} · {% endblock %}
+{% block contenido %}
+<header class="titular"><div class="contenedor"><h1>{{ t("Contacto") }}</h1></div></header>
+<div class="contenedor seccion dos-columnas">
+  <section>
+    <h2>{{ t("Correo") }}</h2>
+    <p class="destacado"><a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a></p>
+    <p>{{ t("Si te interesa hacer un TFG, un TFM o una tesis doctoral en física de partículas o cosmología, escríbeme.") }}</p>
+    <h2>{{ t("Perfiles") }}</h2>
+    <ul class="perfiles">
+      {% for red, texto, url in redes if red != "correo" %}
+      <li><a class="red red--{{ red }}" href="{{ url }}">{{ icono_red(red) }}<span>{{ t(texto) }}</span></a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  <section>
+    <h2>{{ t("Dirección") }}</h2>
+    <address>
+      {{ sitio.departamento }}{% if sitio.despacho %} · {{ t("Despacho {d}", d=sitio.despacho) }}{% endif %}<br>
+      {{ sitio.universidad }}<br>{{ sitio.direccion | saltos }}
+      {% if sitio.telefono %}<br><br>{{ t("Teléfono") }}: <a href="tel:{{ sitio.telefono | replace(' ', '') }}">{{ sitio.telefono }}</a>{% endif %}
+    </address>
+    <p>{{ t("Miembro del") }} <a href="{{ sitio.grupo_web }}">{{ sitio.grupo }}</a>.</p>
+  </section>
+</div>
+{% endblock %}

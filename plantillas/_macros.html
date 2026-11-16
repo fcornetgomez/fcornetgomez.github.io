@@ -1,0 +1,23 @@
+{% macro publicacion(p) %}
+<li class="pub" data-tema="{{ p.tema }}">
+  <span class="pub__titulo">{{ p.titulo | latex }}</span>
+  <span class="pub__autores">
+    {%- if p.colaboracion and p.num_autores > 30 %}{{ t("Colaboración {nombre}", nombre=p.colaboracion) }} ({{ t("{n} autores", n=p.num_autores) }})
+    {%- else %}
+      {%- for a, yo in p.autores_web %}{% if yo %}<strong>{{ a }}</strong>{% else %}{{ a }}{% endif %}{% if not loop.last %}; {% endif %}{% endfor %}
+      {%- if p.autores and p.num_autores > p.mostrados %} <em>et al.</em> ({{ t("{n} autores", n=p.num_autores) }}
+        {%- if p.yo_en_et_al %}, {{ t("entre ellos") }} <strong>{{ p.yo }}</strong>{% endif %}){% endif %}
+      {%- if p.colaboracion %} · {{ t("Colaboración {nombre}", nombre=p.colaboracion) }}{% endif %}
+    {%- endif -%}
+  </span>
+  <span class="pub__datos">
+    {% if p.revista %}<span>{{ p.revista }} ({{ p.anio }})</span>
+    {% elif p.tipo == "thesis" %}<span class="etiqueta">{{ t("Tesis") }}</span>
+    {% else %}<span class="etiqueta">{{ t("Preprint") }}</span>{% endif %}
+    {% if p.doi %}<a href="https://doi.org/{{ p.doi }}">DOI</a>{% endif %}
+    {% if p.arxiv %}<a href="https://arxiv.org/abs/{{ p.arxiv }}">arXiv:{{ p.arxiv }}</a>{% endif %}
+    {% if p.inspire %}<a href="https://inspirehep.net/literature/{{ p.inspire }}">INSPIRE</a>{% endif %}
+    {% if p.citas %}<a class="citas" href="https://inspirehep.net/literature?q=refersto%3Arecid%3A{{ p.inspire }}" title="{{ t('Trabajos que lo citan en INSPIRE-HEP') }}">{{ t("{n} citas", n=p.citas) if p.citas != 1 else t("1 cita") }}</a>{% endif %}
+  </span>
+</li>
+{% endmacro %}

@@ -1,0 +1,42 @@
+# Datos generales de la web personal.
+# Para cambiar un texto, edita lo que va después de los dos puntos.
+# Las líneas que empiezan por # son comentarios y no se muestran.
+
+nombre: Fernando Cornet-Gómez
+cargo: Profesor Distinguido
+departamento: Departamento de Física
+universidad: Universidad de Córdoba
+grupo: Grupo FQM-429 «Astrofísica, Cosmología y Partículas»
+grupo_web: https://www.uco.es/investiga/grupos/acp/
+correo: sc2cogof@uco.es
+telefono: "+34 957 21 22 54"
+despacho: C2BO020
+direccion: |
+  Campus de Rabanales, Edificio Albert Einstein (C2)
+  Ctra. N-IV, km 396
+  14071 Córdoba (España)
+foto: fernando-cornet-gomez.jpg   # en estatico/img/foto/
+
+# Identificadores: con el ORCID y el perfil de INSPIRE se descargan solas las publicaciones.
+orcid: 0000-0002-5242-3019
+inspire: 1517356
+scholar: BmQ-1J4AAAAJ          # Google Scholar (lo que va detrás de "user=")
+github: fcornetgomez
+x: CornetF
+linkedin: fernando-cornet-gómez-535a68100
+
+# Frase corta de la portada.
+lema: Física de partículas más allá del Modelo Estándar, de los bosones de Higgs a la forma del Universo.
+
+# Texto de presentación de la portada (admite Markdown: **negrita**, [enlace](url)).
+presentacion: |
+  Soy físico teórico de partículas (fenomenología) en el Departamento de Física
+  de la Universidad de Córdoba, donde formo parte del grupo
+  [FQM-429](https://www.uco.es/investiga/grupos/acp/). Trabajo en la física del
+  **sabor** y la violación de **CP** en modelos con dos dobletes de Higgs, en las
+  anomalías de los momentos magnéticos de los leptones (**g−2**) y en lo que los
+  **futuros colisionadores** pueden decirnos sobre el quark top y el bosón de Higgs.
+
+  También me interesa la cosmología: en la colaboración **COMPACT** buscamos la
+  **topología del Universo** en el fondo cósmico de microondas, con ayuda del
+  aprendizaje automático.

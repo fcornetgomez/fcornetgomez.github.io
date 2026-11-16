@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% from "_macros.html" import publicacion %}
+{% from "_diagramas.html" import diagrama, colision %}
+{% from "_redes.html" import lista_redes %}
+{% block contenido %}
+<section class="portada">
+  {# Anillo del acelerador, con los paquetes de partículas girando #}
+  <svg class="portada__anillo" viewBox="0 0 1000 1000" aria-hidden="true" focusable="false">
+    <circle cx="500" cy="500" r="470"/>
+    <circle cx="500" cy="500" r="455" class="portada__anillo-2"/>
+    <g class="portada__paquetes">
+      {% for k in range(6) %}<ellipse cx="500" cy="37.5" rx="9" ry="2.5" transform="rotate({{ 60 * k }} 500 500)"/>{% endfor %}
+    </g>
+  </svg>
+  <div class="contenedor portada__fila">
+    <div class="portada__texto">
+      <p class="portada__codigo">{{ sitio.cargo }} · {{ sitio.departamento }} · {{ sitio.universidad }}</p>
+      <h1>{{ sitio.nombre }}</h1>
+      <p class="portada__lema">{{ sitio.lema }}</p>
+      <p class="portada__botones">
+        <a class="boton" href="investigacion.html">{{ t("Investigación") }}</a>
+        <a class="boton boton--claro" href="publicaciones.html">{{ t("Publicaciones") }}</a>
+        <a class="boton boton--claro" href="trayectoria.html">{{ t("Trayectoria") }}</a>
+      </p>
+      {{ lista_redes(redes, "redes--portada") }}
+    </div>
+    <figure class="portada__evento">
+      {{ colision(evento) }}
+      <figcaption>
+        <span class="leyenda leyenda--muon">μ<sup>±</sup></span>
+        <span class="leyenda leyenda--hadron">{{ t("chorros b") }}</span>
+        <span>e<sup>+</sup>e<sup>−</sup> → ZH → μ<sup>+</sup>μ<sup>−</sup> b b̄</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="contenedor seccion intro">
+  {% if sitio.foto %}
+  <img class="intro__foto" src="{{ raiz }}{{ recurso('img/foto/' ~ sitio.foto) }}" alt="{{ sitio.nombre }}" width="160" height="160">
+  {% endif %}
+  <div>
+    {{ sitio.presentacion | md }}
+    {% if metricas %}
+    <dl class="metricas">
+      <div><dt>{{ t("Publicaciones") }}</dt><dd>{{ metricas.trabajos }}</dd></div>
+      <div><dt>{{ t("Citas") }}</dt><dd>{{ metricas.citas }}</dd></div>
+      <div><dt>{{ t("Índice h") }}</dt><dd>{{ metricas.indice_h }}</dd></div>
+    </dl>
+    <p class="tenue metricas__nota">{{ t("Según INSPIRE-HEP, a {fecha}.", fecha=metricas.fecha) }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="contenedor seccion">
+  <h2>{{ t("Líneas de investigación") }}</h2>
+  <div class="tarjetas">
+    {% for l in lineas %}
+    <a class="tarjeta" href="investigacion.html#linea-{{ loop.index }}">
+      {% if l.diagrama %}<div class="tarjeta__diagrama">{{ diagrama(l.diagrama, l.titulo) }}</div>{% endif %}
+      <h3>{{ l.titulo }}</h3>
+      <div>{{ l.resumen | md }}</div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="contenedor seccion dos-columnas dos-columnas--ancha">
+  {% if destacadas %}
+  <section>
+    <h2>{{ t("Publicaciones destacadas") }}</h2>
+    <ol class="pubs">{% for p in destacadas %}{{ publicacion(p) }}{% endfor %}</ol>
+    <p><a href="publicaciones.html">{{ t("Todas las publicaciones") }} →</a></p>
+  </section>
+  {% endif %}
+  <section>
+    <h2>{{ t("Noticias") }}</h2>
+    {% for n in noticias %}
+    <article class="noticia-breve">
+      <time datetime="{{ n.fecha }}">{{ n.fecha | fecha }}</time>
+      <h3><a href="noticias.html#{{ n.id }}">{{ n.titulo }}</a></h3>
+    </article>
+    {% else %}<p class="tenue">{{ t("Sin noticias.") }}</p>{% endfor %}
+    <p><a href="noticias.html">{{ t("Todas las noticias") }} →</a></p>
+  </section>
+</div>
+{% endblock %}

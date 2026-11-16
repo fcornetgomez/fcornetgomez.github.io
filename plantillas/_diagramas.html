@@ -1,0 +1,90 @@
+{# Diagramas de Feynman dibujados en SVG.
+   Convenio: fermiones = línea continua con flecha; bosones gauge (γ, Z, W) =
+   línea ondulada (onda()); escalares (H, A) = línea discontinua; gluones =
+   espiral (muelle()). Los colores salen de estatico/css/estilo.css (.fd-*).
+   Las flechas (#flecha) están definidas una sola vez en base.html. #}
+
+{% macro fermion(x1, y1, x2, y2) -%}
+<path class="fd-f" d="M{{ x1 }} {{ y1 }} L{{ (x1 + x2) / 2 }} {{ (y1 + y2) / 2 }} L{{ x2 }} {{ y2 }}" marker-mid="url(#flecha)"/>
+{%- endmacro %}
+
+{% macro boson(x1, y1, x2, y2) -%}
+<path class="fd-b" d="{{ onda(x1, y1, x2, y2) }}"/>
+{%- endmacro %}
+
+{% macro escalar(x1, y1, x2, y2) -%}
+<path class="fd-s" d="M{{ x1 }} {{ y1 }} L{{ x2 }} {{ y2 }}"/>
+{%- endmacro %}
+
+{% macro vertice(x, y) -%}
+<circle class="fd-v" cx="{{ x }}" cy="{{ y }}" r="2.6"/>
+{%- endmacro %}
+
+{% macro etiqueta(x, y, texto, ancla="middle") -%}
+<text class="fd-t" x="{{ x }}" y="{{ y }}" text-anchor="{{ ancla }}">{{ texto | safe }}</text>
+{%- endmacro %}
+
+{% macro diagrama(nombre, titulo="") %}
+<svg class="fd" viewBox="0 0 160 100" role="img" aria-label="{{ titulo or nombre }}" focusable="false">
+{% if nombre == "sabor" %}
+  {# Corriente neutra con cambio de sabor a nivel árbol: b → s con intercambio de un escalar #}
+  {{ fermion(12, 24, 80, 24) }}{{ fermion(80, 24, 148, 24) }}
+  {{ fermion(12, 80, 80, 80) }}{{ fermion(80, 80, 148, 80) }}
+  {{ escalar(80, 24, 80, 80) }}
+  <circle class="fd-fcnc" cx="80" cy="24" r="6"/>
+  {{ vertice(80, 24) }}{{ vertice(80, 80) }}
+  {{ etiqueta(10, 16, "b", "start") }}{{ etiqueta(150, 16, "s", "end") }}
+  {{ etiqueta(10, 96, "μ⁻", "start") }}{{ etiqueta(150, 96, "μ⁻", "end") }}
+  {{ etiqueta(87, 57, "H⁰, A⁰", "start") }}
+{% elif nombre == "g-2" %}
+  {# Corrección de vértice al momento magnético con un escalar en el bucle #}
+  {{ fermion(8, 64, 40, 64) }}{{ fermion(40, 64, 80, 64) }}{{ fermion(80, 64, 120, 64) }}{{ fermion(120, 64, 152, 64) }}
+  <path class="fd-s" d="M40 64 A40 40 0 0 1 120 64"/>
+  {{ boson(80, 64, 80, 98) }}
+  {{ vertice(40, 64) }}{{ vertice(80, 64) }}{{ vertice(120, 64) }}
+  {{ etiqueta(10, 56, "μ", "start") }}{{ etiqueta(150, 56, "μ", "end") }}
+  {{ etiqueta(80, 18, "H, A") }}{{ etiqueta(60, 78, "τ, μ") }}{{ etiqueta(88, 94, "γ", "start") }}
+{% elif nombre == "colisionador" %}
+  {# e⁺e⁻ → Z* → ZH (Higgsstrahlung) #}
+  {{ fermion(12, 12, 50, 50) }}{{ fermion(50, 50, 12, 88) }}
+  {{ boson(50, 50, 106, 50) }}
+  {{ boson(106, 50, 148, 14) }}{{ escalar(106, 50, 148, 86) }}
+  {{ vertice(50, 50) }}{{ vertice(106, 50) }}
+  {{ etiqueta(8, 22, "e⁻", "start") }}{{ etiqueta(8, 86, "e⁺", "start") }}
+  {{ etiqueta(78, 40, "Z*") }}{{ etiqueta(152, 26, "Z", "end") }}{{ etiqueta(152, 80, "H", "end") }}
+{% elif nombre == "topologia" %}
+  {# Universo toroidal: el dominio fundamental (centro) y sus copias #}
+  {% for i in range(3) %}{% for j in range(3) %}
+  {% set x = 35 + 30 * i %}{% set y = 5 + 30 * j %}
+  <g class="{{ 'fd-celda fd-celda--centro' if i == 1 and j == 1 else 'fd-celda' }}">
+    <rect x="{{ x }}" y="{{ y }}" width="30" height="30"/>
+    <circle cx="{{ x + 9 }}" cy="{{ y + 11 }}" r="2.2"/>
+    <path d="M{{ x + 20 }} {{ y + 18 }} l2 4 l-4 0 z"/>
+  </g>
+  {% endfor %}{% endfor %}
+  <path class="fd-rayo" d="M74 46 L134 6"/>
+  <path class="fd-flecha-borde" d="M78 35 l3 -2.5 l3 2.5 M78 65 l3 -2.5 l3 2.5 M65 48 l2.5 3 l-2.5 3 M62 48 l2.5 3 l-2.5 3 M95 48 l2.5 3 l-2.5 3 M92 48 l2.5 3 l-2.5 3"/>
+  {{ etiqueta(4, 52, "T³", "start") }}
+{% endif %}
+</svg>
+{% endmacro %}
+
+{# Colisión de la portada (datos de evento() en scripts/construir.py) #}
+{% macro colision(ev) %}
+<svg class="evento" viewBox="-175 -175 350 350" role="img" aria-labelledby="evento-titulo" focusable="false">
+  <title id="evento-titulo">{{ t("Simulación esquemática de una colisión e⁺e⁻ → ZH → μ⁺μ⁻ bb̄ en el corte transversal de un detector") }}</title>
+  <g class="evento__detector">
+    <circle r="5"/>
+    {% for r in (28, 48, 68) %}<circle r="{{ r }}" class="evento__capa"/>{% endfor %}
+    <circle r="{{ ev.capas.traza }}"/>
+    <circle r="{{ ev.capas.ecal - 8 }}" class="evento__cal"/><circle r="{{ ev.capas.ecal + 8 }}" class="evento__cal"/>
+    <circle r="{{ ev.capas.hcal - 18 }}" class="evento__cal"/><circle r="{{ ev.capas.hcal + 20 }}"/>
+    {% for k in range(12) %}
+    <path class="evento__camara" d="M{{ (ev.capas.muon - 6) }} -14 h18 v28 h-18 z" transform="rotate({{ 30 * k + 15 }})"/>
+    {% endfor %}
+  </g>
+  {% for c in ev.depositos %}<polygon class="dep dep--{{ c.clase }}" points="{{ c.puntos }}"/>{% endfor %}
+  {% for tr in ev.trazas %}<path class="traza traza--{{ tr.clase }}" d="{{ tr.d }}" pathLength="1" style="animation-delay: {{ tr.retraso }}"/>{% endfor %}
+  <circle class="evento__vertice" r="3"/>
+</svg>
+{% endmacro %}

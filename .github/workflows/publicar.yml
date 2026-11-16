@@ -1,0 +1,56 @@
+# Construye la web y la publica en GitHub Pages (https://fcornetgomez.github.io/).
+# Se ejecuta: al guardar cambios en main, cada lunes (para refrescar publicaciones
+# y citas desde INSPIRE-HEP) y a mano desde "Actions" → "Publicar web" → "Run workflow".
+#
+# Requiere una sola vez: Settings → Pages → Source: "GitHub Actions".
+#
+# Versión en inglés: las traducciones están en datos/traducciones.json y se
+# preparan en local antes de subir. Si se cambia un texto en español desde
+# GitHub, la web se publica igual (lo nuevo sale en español también en la
+# versión inglesa) y el registro de la ejecución muestra un aviso.
+name: Publicar web
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Descargar publicaciones (INSPIRE-HEP)
+        run: python scripts/publicaciones.py
+      - name: Construir la web (español e inglés)
+        run: python scripts/construir.py
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publicar:
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

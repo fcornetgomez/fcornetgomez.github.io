@@ -1,0 +1,13 @@
+# Configuración de la lista de publicaciones (se actualiza sola desde INSPIRE-HEP
+# a partir del ORCID y del perfil de INSPIRE de sitio.yml).
+
+completar_con_orcid: false  # true = añadir también lo que esté en ORCID y no en INSPIRE
+excluir: []                 # números de registro INSPIRE a ocultar, p. ej. [1234567, 2345678]
+
+# Publicaciones destacadas en la portada (número de registro INSPIRE, el que
+# aparece en la dirección https://inspirehep.net/literature/NÚMERO), en este orden.
+destacadas:
+  - 3171567   # The topology of the Universe (Nature Astronomy)
+  - 2900488   # Future collider constraints on top-quark operators (JHEP)
+  - 2075894   # Muon and electron g-2 anomalies in a flavor conserving 2HDM (EPJC)
+  - 1799192   # Electron and muon g-2 anomalies in general flavour conserving 2HDMs (PRD)
